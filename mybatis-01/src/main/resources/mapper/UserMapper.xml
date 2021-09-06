@@ -6,6 +6,7 @@
 
     <!--select查询语句-->
     <!--方法的名字id="getUserList"-->
+    <!--完全限定名com.kuang.pojo.User-->
     <select id="getUserList" resultType="com.kuang.pojo.User">
         select * from mybatis.user
     </select>
