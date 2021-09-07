@@ -5,7 +5,9 @@ import com.kuang.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class UserMapperTest {
@@ -22,6 +24,21 @@ public class UserMapperTest {
         }
         //方式2不推荐
         userList = sqlSession.selectList("com.kuang.dao.UserDao.getUserList");
+        for (User user : userList) {
+            System.out.println(user.toString());
+        }
+
+        //关闭sqlSession
+        sqlSession.close();
+    }
+
+    @Test
+    public void test1() {
+        //第一步：获得sqlSession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        //第二步：面向接口编程,获取UserDao,执行SQL
+        List<User> userList = sqlSession.getMapper(UserMapper.class).getUserListLike("roo");
         for (User user : userList) {
             System.out.println(user.toString());
         }
@@ -47,6 +64,26 @@ public class UserMapperTest {
     }
 
     /**
+     * 测试查询通过id
+     */
+    @Test
+    public void test21() {
+        //第一步：获得sqlSession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 4);
+        map.put("name", "root");
+
+        //第二步：面向接口编程,获取UserDao,执行SQL
+        User user = sqlSession.getMapper(UserMapper.class).getUserById2(map);
+        System.out.println(user.toString());
+
+        //关闭sqlSession
+        sqlSession.close();
+    }
+
+    /**
      * 插入
      */
     @Test
@@ -57,6 +94,32 @@ public class UserMapperTest {
         //第二步：面向接口编程,获取UserDao,执行SQL
         User user = new User(4,"root","1234");
         int res = sqlSession.getMapper(UserMapper.class).addUser(user);
+        if (res>0){
+            System.out.println("插入成功");
+        }
+
+        //提交事务
+        sqlSession.commit();
+        //关闭sqlSession
+        sqlSession.close();
+    }
+
+    /**
+     * 插入by map
+     * 好处：很多附带属性为空也能用
+     */
+    @Test
+    public void test31() {
+        //第一步：获得sqlSession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        //第二步：面向接口编程,获取UserDao,执行SQL
+        Map<String, Object> userMap = new HashMap<String, Object>();
+        userMap.put("userId", 5);
+        userMap.put("userName", "root");
+        userMap.put("userPaw", "root");
+
+        int res = sqlSession.getMapper(UserMapper.class).addUser2(userMap);
         if (res>0){
             System.out.println("插入成功");
         }
