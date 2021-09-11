@@ -13,7 +13,6 @@
 
     <!--配置别名-->
     <typeAliases>
-<!--        <typeAlias type="com.kuang.com.kuang.pojo.User" alias="User"/>-->
         <package name="com.kuang.pojo"/>
     </typeAliases>
 
@@ -42,11 +41,7 @@
 
     <!--每一个Mapper.xml都需要在Mybatis的核心配置文件中注册-->
     <mappers>
-        <!--<mapper resource="mapper/UserMapper.xml"/>-->
-        <!--class方式-->
-        <!--<mapper class="com.kuang.com.kuang.dao.UserMapper"/>-->
-        <!--包方式-->
-        <package name="com.kuang.dao"/>
+        <mapper resource="com/kuang/dao/UserMapper.xml"/>
     </mappers>
 
 </configuration>
