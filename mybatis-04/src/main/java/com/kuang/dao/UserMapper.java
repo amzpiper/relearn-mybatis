@@ -3,6 +3,7 @@ package com.kuang.dao;
 import com.kuang.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 郭宇航
@@ -25,20 +26,21 @@ public interface UserMapper {
 
     /**
      *
-     * @param user
+     * @param map
      * @return
      */
-    public int addUser(User user);
+    public List<User> getUserByLimit(Map<String,Integer> map);
 
     /**
-     * 修改User
+     * RowBounds
      * @return
      */
-    public int updateUser(User user);
+    public List<User> getUserByRowBounds();
 
     /**
-     * 删除User
+     * PageHelper
      * @return
      */
-    public int deleteUser(int id);
+    public List<User> getUserByPageHelper();
+
 }
