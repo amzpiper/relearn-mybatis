@@ -30,7 +30,7 @@ public class MybatisUtils {
     }
 
     /**
-     * //自动提交事务
+      * //自动提交事务
      * @return SqlSession
      */
     public static SqlSession getSqlSession() {

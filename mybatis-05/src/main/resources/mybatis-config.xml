@@ -34,10 +34,8 @@
         </environment>
     </environments>
 
-    <!--每一个Mapper.xml都需要在Mybatis的核心配置文件中注册-->
+    <!--每一个接口都需要在Mybatis的核心配置文件中注册-->
     <mappers>
-        <!--使用注解时不需要注册配置文件-->
-        <!--<mapper resource="com/kuang/dao/UserMapper.xml"/>-->
         <mapper class="com.kuang.dao.UserMapper"/>
     </mappers>
 
