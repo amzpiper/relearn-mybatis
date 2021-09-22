@@ -13,7 +13,7 @@
 
     <!--配置别名-->
     <typeAliases>
-        <package name="com.kuang.pojo"/>
+        <package name="com.com.kuang.pojo"/>
     </typeAliases>
 
     <!--default切换环境-->
@@ -41,7 +41,7 @@
 
     <!--每一个Mapper.xml都需要在Mybatis的核心配置文件中注册-->
     <mappers>
-        <mapper resource="com/kuang/dao/UserMapper.xml"/>
+        <mapper resource="com/com.kuang/com.kuang.dao/UserMapper.xml"/>
     </mappers>
 
 </configuration>

@@ -65,7 +65,7 @@ public class UserMapperTest {
         //RowBouns
         RowBounds rowBounds = new RowBounds(1, 2);
 
-        List<User> userList = sqlSession.selectList("com.kuang.dao.UserMapper.getUserByRowBounds",User.class,rowBounds);
+        List<User> userList = sqlSession.selectList("com.com.kuang.com.kuang.dao.UserMapper.getUserByRowBounds",User.class,rowBounds);
         for (User user : userList) {
             System.out.println(user.toString());
         }

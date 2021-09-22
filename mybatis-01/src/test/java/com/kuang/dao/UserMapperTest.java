@@ -23,7 +23,7 @@ public class UserMapperTest {
             System.out.println(user.toString());
         }
         //方式2不推荐
-        userList = sqlSession.selectList("com.kuang.com.kuang.com.kuang.dao.UserDao.getUserList");
+        userList = sqlSession.selectList("com.com.kuang.com.com.kuang.com.com.kuang.com.kuang.dao.UserDao.getUserList");
         for (User user : userList) {
             System.out.println(user.toString());
         }

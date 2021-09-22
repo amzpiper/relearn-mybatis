@@ -13,8 +13,8 @@
 
     <!--配置别名-->
     <typeAliases>
-<!--        <typeAlias type="com.kuang.com.kuang.pojo.User" alias="User"/>-->
-        <package name="com.kuang.com.kuang.pojo"/>
+<!--        <typeAlias type="com.com.kuang.com.com.kuang.pojo.User" alias="User"/>-->
+        <package name="com.com.kuang.com.com.kuang.pojo"/>
     </typeAliases>
 
     <!--default切换环境-->
@@ -44,9 +44,9 @@
     <mappers>
         <!--<mapper resource="mapper/UserMapper.xml"/>-->
         <!--class方式-->
-        <!--<mapper class="com.kuang.com.kuang.dao.UserMapper"/>-->
+        <!--<mapper class="com.com.kuang.com.com.kuang.com.kuang.dao.UserMapper"/>-->
         <!--包方式-->
-        <package name="com.kuang.com.kuang.dao"/>
+        <package name="com.com.kuang.com.com.kuang.com.kuang.dao"/>
     </mappers>
 
 </configuration>

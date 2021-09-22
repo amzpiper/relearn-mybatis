@@ -12,21 +12,13 @@
     <!--配置日志工厂-->
     <!--SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING-->
     <settings>
-        <setting name="logImpl" value="LOG4J"/>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 
     <!--配置别名-->
     <typeAliases>
-        <package name="com.com.kuang.pojo"/>
+        <package name="com.kuang.pojo"/>
     </typeAliases>
-
-    <!--配置pagehelper-->
-    <plugins>
-        <!-- com.github.pagehelper为PageHelper类所在包名 -->
-        <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
-        </plugin>
-    </plugins>
 
     <!--default切换环境-->
     <environments default="test">
@@ -42,9 +34,10 @@
         </environment>
     </environments>
 
-    <!--每一个Mapper.xml都需要在Mybatis的核心配置文件中注册-->
+    <!--每一个接口都需要在Mybatis的核心配置文件中注册-->
     <mappers>
-        <mapper resource="com/com.kuang/com.kuang.dao/UserMapper.xml"/>
+        <mapper class="com.kuang.dao.TeacherMapper"/>
+        <mapper class="com.kuang.dao.StudentMapper"/>
     </mappers>
-    
+
 </configuration>

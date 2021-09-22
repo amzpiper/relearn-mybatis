@@ -17,7 +17,7 @@
 
     <!--配置别名-->
     <typeAliases>
-        <package name="com.kuang.pojo"/>
+        <package name="com.com.kuang.pojo"/>
     </typeAliases>
 
     <!--default切换环境-->
@@ -36,7 +36,7 @@
 
     <!--每一个接口都需要在Mybatis的核心配置文件中注册-->
     <mappers>
-        <mapper class="com.kuang.dao.UserMapper"/>
+        <mapper class="com.com.kuang.com.kuang.dao.UserMapper"/>
     </mappers>
 
 </configuration>
