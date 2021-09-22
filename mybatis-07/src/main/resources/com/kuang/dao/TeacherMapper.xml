@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.TeacherMapper">
 
-    <!--按结果嵌套查询-->
+    <!--方式一、按结果嵌套查询-->
     <select id="getTeacher" parameterType="int" resultMap="TeacherStudent">
         select
             s.id sid,
@@ -24,10 +24,31 @@
             javaType是指定属性的类型,这里是list,不合规范
             集合中泛型类型使用ofType指定
         -->
-        <collection property="students" ofType="student">
+        <collection property="students" ofType="student" javaType="ArrayList">
             <result property="id" column="sid"/>
             <result property="name" column="sname"/>
             <result property="tid" column="tid"/>
+        </collection>
+    </resultMap>
+
+    <!--方式二、按子查询-->
+    <!--
+        思路：
+            查老师先
+            根据老师id传入到查询学生语句中
+    -->
+    <select id="getTeacher2" resultMap="TeacherStudent2">
+        select id,name from teacher where id = #{tid}
+    </select>
+    <select id="getStudentByTeacherId" resultType="student">
+        select id,name,tid from student s where tid = #{tid}
+    </select>
+    <resultMap id="TeacherStudent2" type="teacher">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <!--使用javaType是List-->
+        <collection property="students" column="id" javaType="ArrayList" ofType="student" select="getStudentByTeacherId">
+
         </collection>
     </resultMap>
 
