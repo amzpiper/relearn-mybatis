@@ -18,7 +18,7 @@ public class MyTest {
     public void test() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
-        List<Teacher> teachers = mapper.getTeacher();
+        List<Teacher> teachers = mapper.getTeacher(1);
         for (Teacher teacher : teachers) {
             System.out.println(teacher);
         }
