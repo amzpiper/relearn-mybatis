@@ -22,6 +22,7 @@ public class MyTest {
         for (Teacher teacher : teachers) {
             System.out.println(teacher);
         }
+        //Teacher(id=1, name=missLi, students=[Student(id=1, name=ming, tid=1), Student(id=2, name=hong, tid=1), Student(id=3, name=zhang, tid=1), Student(id=4, name=li, tid=1), Student(id=5, name=wang, tid=1)])
     }
 
 }
