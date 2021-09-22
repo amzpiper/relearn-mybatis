@@ -12,7 +12,5 @@ public class Student {
 
     private int id;
     private String name;
-
-    //学生要关联1个老师
-    private Teacher teacher;
+    private int tid;
 }
