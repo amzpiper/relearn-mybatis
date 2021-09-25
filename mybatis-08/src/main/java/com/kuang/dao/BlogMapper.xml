@@ -9,6 +9,22 @@
         values (#{id}, #{title}, #{author}, #{createTime}, #{views})
     </insert>
 
+    <!--sql片段-->
+    <sql id="if-title-author">
+        <if test="title != null">
+            title = #{title}
+        </if>
+        <if test="author != null">
+            and author = #{author}
+        </if>
+    </sql>
+
+    <!--include 元素的 refid 属性或内部语句中使用属性值-->
+    <sql id="someinclude">
+        from
+        <include refid="${include_target}"/>
+    </sql>
+
     <!--
         传title，查指定书
         传作者，查作者所有书
@@ -17,12 +33,14 @@
     <select id="queryBlog" resultType="blog" parameterType="map">
         select * from blog
         <where>
-            <if test="title != null">
-                title = #{title}
-            </if>
-            <if test="author != null">
-                and author = #{author}
-            </if>
+            <!--引入sql片段-->
+            <include refid="if-title-author"></include>
+            <!--<if test="title != null">-->
+            <!--    title = #{title}-->
+            <!--</if>-->
+            <!--<if test="author != null">-->
+            <!--    and author = #{author}-->
+            <!--</if>-->
         </where>
     </select>
 
@@ -63,4 +81,22 @@
         </set>
         where id = #{id}
     </update>
+
+    <!--
+        拼接select * from blog b where 1=1 and (id = 1 or id = 2 or id = 3)
+        传递万能map，在map中存入一个list,key=ids
+    -->
+    <select id="queryBlogForeach" parameterType="map" resultType="blog">
+        select *
+        from blog
+
+        <where>
+            1 = 1
+            <!--where 会把open中的第一个and去掉-->
+            <foreach collection="ids" item="id" open="and (" close=")" separator="or">
+                id = #{id}
+            </foreach>
+        </where>
+    </select>
+
 </mapper>

@@ -6,10 +6,7 @@ import com.kuang.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author 郭宇航
@@ -18,6 +15,9 @@ import java.util.Map;
  */
 public class MyTest {
 
+    /**
+     * 插入数据
+     */
     @Test
     public void test() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -40,6 +40,9 @@ public class MyTest {
         sqlSession.close();
     }
 
+    /**
+     * if标签和sql片段
+     */
     @Test
     public void test2() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -74,6 +77,9 @@ public class MyTest {
         sqlSession.close();
     }
 
+    /**
+     * choose标签
+     */
     @Test
     public void test3() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -108,6 +114,9 @@ public class MyTest {
         sqlSession.close();
     }
 
+    /**
+     * set标签
+     */
     @Test
     public void test4() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -124,6 +133,29 @@ public class MyTest {
         map.remove("title");
         map.put("author", "kuang2");
         mapper.updateBlog(map);
+        System.out.println("---------------------------------------");
+
+        sqlSession.close();
+    }
+
+    /**
+     * foreach
+     */
+    @Test
+    public void test5() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+        Map map = new HashMap<>();
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        map.put("ids", list);
+        List<Blog> blogs = mapper.queryBlogForeach(map);
+        for (Blog blog : blogs) {
+            System.out.println(blog);
+        }
         System.out.println("---------------------------------------");
 
         sqlSession.close();
