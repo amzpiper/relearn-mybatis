@@ -85,4 +85,37 @@ public class MyTest {
         //true
         System.out.println(user==user2);
     }
+
+    /**
+     * 测试查询顺序
+     */
+    @Test
+    public void test4() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        System.out.println("查数据库，sqlSession关闭，放入二级缓存");
+        User user = mapper.queryUserById(1);
+        System.out.println(user);
+        sqlSession.close();
+        System.out.println("=============================================");
+
+        SqlSession sqlSession2 = MybatisUtils.getSqlSession();
+        UserMapper mapper2 = sqlSession2.getMapper(UserMapper.class);
+        System.out.println("查二级缓存");
+        User user2 = mapper2.queryUserById(1);
+        System.out.println(user2);
+        System.out.println("=============================================");
+
+        System.out.println("二级一级缓存没有，查数据库，放入一级缓存");
+        User user3 = mapper2.queryUserById(2);
+        System.out.println(user3);
+        System.out.println("=============================================");
+
+        System.out.println("查二级缓存没有，查一级缓存");
+        User user4 = mapper2.queryUserById(2);
+        System.out.println(user4);
+        System.out.println("=============================================");
+
+        sqlSession2.close();
+    }
 }

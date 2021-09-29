@@ -11,18 +11,25 @@
     最大缓存个数size
     返回的对象被认为是只读readOnly
     -->
-    <cache
-            eviction="FIFO"
-            flushInterval="60000"
-            size="512"
-            readOnly="true"
-    />
+    <!--<cache-->
+    <!--        eviction="FIFO"-->
+    <!--        flushInterval="60000"-->
+    <!--        size="512"-->
+    <!--        readOnly="true"-->
+    <!--/>-->
 
-    <select id="queryUserById" parameterType="int" resultType="user">
+    <!--第三方缓存ehcache,type为实现缓存的接口-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <!--使用自定义,type为实现缓存的接口-->
+    <!--<cache type="com.kuang.utils.MyCache"/>-->
+
+    <!--调优时用：useCache="true" flushCache="true"-->
+    <select id="queryUserById" parameterType="int" resultType="user" useCache="true">
         select * from user where id = #{id}
     </select>
 
-    <update id="updateUser" parameterType="user">
+    <update id="updateUser" parameterType="user" flushCache="true">
         update user set name = #{name},password = #{password} where id = #{id}
     </update>
 
