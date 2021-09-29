@@ -63,4 +63,26 @@ public class MyTest {
 
         sqlSession.close();
     }
+
+    /**
+     * 测试二级缓存,2次查询使用2个sqlSession
+     * sql走了1次
+     */
+    @Test
+    public void test3() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = mapper.queryUserById(1);
+        System.out.println(user);
+        sqlSession.close();
+
+        SqlSession sqlSession2 = MybatisUtils.getSqlSession();
+        UserMapper mapper2 = sqlSession2.getMapper(UserMapper.class);
+        User user2 = mapper2.queryUserById(1);
+        System.out.println(user2);
+        sqlSession2.close();
+
+        //true
+        System.out.println(user==user2);
+    }
 }

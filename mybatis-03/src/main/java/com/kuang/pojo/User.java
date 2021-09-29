@@ -3,7 +3,7 @@ package com.kuang.pojo;
 /**
  * @author 郭宇航
  */
-public class User {
+public class User{
     private int id;
     private String name;
     private String pwd;

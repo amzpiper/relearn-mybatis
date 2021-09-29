@@ -13,6 +13,8 @@
     <!--SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING-->
     <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--显示的开启全局缓存，默认开启true-->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
 
     <!--配置别名-->

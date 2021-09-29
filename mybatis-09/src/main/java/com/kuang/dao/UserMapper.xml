@@ -4,6 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.UserMapper">
 
+    <!--
+    开启二级缓存
+    策略FIFO
+    刷新间隔flushInterval
+    最大缓存个数size
+    返回的对象被认为是只读readOnly
+    -->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"
+    />
+
     <select id="queryUserById" parameterType="int" resultType="user">
         select * from user where id = #{id}
     </select>
